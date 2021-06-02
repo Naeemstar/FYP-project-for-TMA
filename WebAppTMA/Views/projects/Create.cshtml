@@ -1,0 +1,88 @@
+﻿@model WebAppTMA.Models.SuccessDeplyment
+
+@{
+    ViewBag.Title = "Create";
+   // Layout = "~/Views/Shared/_DashboradLayout.cshtml";
+}
+
+<head>
+    <style>
+        .stee {
+            margin-left: 158px;
+            margin-top: 90px;
+        }
+    </style>
+</head>
+
+<div class="container">
+    <div class="stee">
+
+        @using (Html.BeginForm("Create", "projects",FormMethod.Post,new {@id = "creatproduct"}))
+        {
+            @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4 style="text-align:center;color:blue;"> CREATE poject</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.project_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.project_Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.project_Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.project_Budget, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.project_Budget, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.project_Budget, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.project_Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.project_Status, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.project_Status, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.UserId, "UserId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("UserId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-2">
+                    <input type="button" value="Create" class="btn btn-primary btn-lg" id="crebtn" />
+                </div>
+            </div>
+        </div>
+        }
+        </div>
+    </div>
+
+
+<script>
+    $("#crebtn").click(function () {
+
+        $.ajax({
+            type: 'POST',
+            url: '/projects/Create/',
+            data: $("#creatproduct").serialize()
+
+        })
+            .done(function (response) {
+                $("#tablcontainer").html(response);
+                $("#actioncontainer").html("");
+            })
+            .fail(function (XMLHttpRequest, TextStatus, errorThrown) {
+                alert("fail");
+            })
+    });
+</script>

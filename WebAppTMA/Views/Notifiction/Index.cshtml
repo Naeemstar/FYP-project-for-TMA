@@ -1,0 +1,129 @@
+﻿@model IEnumerable<WebAppTMA.Models.Notifaction>
+
+@{
+    ViewBag.Title = "Index";
+    //Layout = "~/Views/Shared/_DashboradLayout.cshtml";
+}
+
+<head>
+    <style>
+        .con {
+            margin-top: 200px;
+            margin-left: 250px;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<div class="container">
+    <div class="con">
+
+        <h2 style="text-align:center;color:blue;"> Notification Lists</h2>
+        <br />
+        <table class="table table-striped table-bordered">
+            <tr>
+                <th>
+                    submitFrom
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NotifiType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NotifisubmitTo)
+                </th>
+                @*<th>
+                    @Html.DisplayNameFor(model => model.NotifisubmitFrom)
+                </th>*@
+                <th>ACTION</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NotifiType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NotifisubmitTo)
+                    </td>
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.NotifisubmitFrom)
+                    </td>*@
+                    <td>
+                        <button class="editbtn" data-id="@item.Id" style="width:150px;height:40px;"><i class="fas fa-edit"></i></button>|
+                       
+                        <button class="deletbtn" product="@item.Id" style="width:150px;height:40px;"><i class="fas fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <button class="btn btn-primary" id="nwbtn">NEW Notification</button>
+    </div>
+</div>
+
+<script>
+    $("#nwbtn").click(function () {
+
+        $.ajax({
+            url: '/Notifiction/Create/',
+
+
+        })
+            .done(function (response) {
+                $("#actioncontainer").html(response);
+            })
+            .fail(function (XMLHttpRequest, TextStatus, errorThrown) {
+                alert("fail");
+            })
+    });
+    $(".editbtn").click(function () {
+
+        $.ajax({
+            url: '/Notifiction/Edit/',
+            data: {
+                ID: $(this).attr('data-id')
+            }
+
+        })
+            .done(function (response) {
+                $("#actioncontainer").html(response);
+            })
+            .fail(function (XMLHttpRequest, TextStatus, errorThrown) {
+                alert("fail");
+            })
+    });
+    $(".deletbtn").click(function () {
+
+        if (confirm("Are you want to delete this things!") == true);
+        {
+
+            $.ajax({
+                type: 'POST',
+                url: '/Notifiction/Delete/',
+                data: {
+                    ID: $(this).attr('product')
+                }
+
+            })
+                .done(function (response) {
+                    $("#tablcontainer").html(response);
+                })
+                .fail(function (XMLHttpRequest, TextStatus, errorThrown) {
+                    alert("fail");
+                })
+
+
+        }
+
+
+
+
+    });
+</script>

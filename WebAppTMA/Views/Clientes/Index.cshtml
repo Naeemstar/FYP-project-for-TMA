@@ -1,0 +1,129 @@
+﻿@model IEnumerable<WebAppTMA.Models.Clientes>
+
+@{
+    ViewBag.Title = "Index";
+    //Layout = "~/Views/Shared/_DashboradLayout.cshtml";
+}
+<head>
+    <style>
+        .con{
+            margin-top:150px;
+            margin-left:250px;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<div class="container">
+    <div class="con">
+
+        <h2 style="text-align:center;color:blue;">clients List</h2>
+        <br />
+        @*<p>
+            @Html.ActionLink("Create New", "Create")
+        </p>*@
+     
+            <table class="table table-striped table-bordered">
+                <tr>
+                    <th>
+                 client Name
+                    </th>
+                    <th>Address</th>
+                    <th>cell num</th>
+                    <th> Actions controller</th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.clientType)
+                    </td>
+                    <td>@Html.DisplayFor(modelItem => item.address)</td>
+                    <td>@Html.DisplayFor(modelItem => item.phone)</td>
+                    <td>
+
+                        <button class="editbtn" data-id="@item.Id" style="width:150px;height:40px;"><i class="fas fa-edit"></i></button>|
+                        @*@Html.ActionLink("Details", "Details", new { id = item.Id }) *@
+                        <button class="deletbtn" product="@item.Id" style="width:150px;height:40px;"><i class="fas fa-trash-alt"></i></button>
+                        @*@Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                    </td>
+                </tr>
+                }
+
+            </table>
+            <button class="btn btn-primary" id="nwbtn">NEW Client</button>
+       
+    </div>
+</div>
+@*<div class="container">
+    @{
+        Html.RenderAction("Create");
+    }
+</div>*@
+
+
+
+
+<script>
+   
+    $("#nwbtn").click(function () {
+
+        $.ajax({
+            url: '/Clientes/Create/',
+
+
+        })
+            .done(function (response) {
+                $("#actioncontainer").html(response);
+            })
+            .fail(function (XMLHttpRequest, TextStatus, errorThrown) {
+                alert("fail"); 
+            })
+    });
+    $(".editbtn").click(function () {
+
+        $.ajax({
+            url: '/Clientes/Edit/',
+            data: {
+                ID: $(this).attr('data-id')
+            }
+
+        })
+            .done(function (response) {
+                $("#actioncontainer").html(response);
+            })
+            .fail(function (XMLHttpRequest, TextStatus, errorThrown) {
+                alert("fail");
+            })
+    });
+    $(".deletbtn").click(function () {
+
+        if (confirm("Are you want to delete this things!") == true);
+         {
+
+            $.ajax({
+                type: 'POST',
+                url: '/Clientes/Delete/',
+                data: {
+                    ID: $(this).attr('product')
+                }
+
+            })
+                .done(function (response) {
+                    $("#tablcontainer").html(response);
+                })
+                .fail(function (XMLHttpRequest, TextStatus, errorThrown) {
+                    alert("fail");
+                })
+          
+
+        }
+        
+       
+        
+      
+    });
+</script>

@@ -1,0 +1,629 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TMADBKKModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Files">
+          <Key>
+            <PropertyRef Name="fileId" />
+          </Key>
+          <Property Name="fileId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="sumitionDate" Type="datetime" Nullable="false" />
+          <Property Name="file_form" Type="nvarchar(max)" />
+          <Property Name="updateDate" Type="datetime" Nullable="false" />
+          <Property Name="submit_to" Type="nvarchar(max)" />
+          <Property Name="submit_from" Type="nvarchar(max)" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="clientType" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Complain">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="complainType" Type="nvarchar(max)" />
+          <Property Name="complaindata" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Notification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NotifiType" Type="nvarchar(max)" />
+          <Property Name="NotifisubmitTo" Type="nvarchar(max)" />
+          <Property Name="NotifisubmitFrom" Type="nvarchar(max)" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_planing">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="planning_Type" Type="nvarchar(max)" />
+          <Property Name="planning_Payment" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Resources">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="quantity" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_SuccessDeplyment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="project_Name" Type="nvarchar(max)" />
+          <Property Name="project_Budget" Type="int" Nullable="false" />
+          <Property Name="project_Status" Type="nvarchar(max)" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_user">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Contact" Type="nvarchar(max)" />
+          <Property Name="profile" Type="nvarchar(max)" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_Files_dbo_tbl_user_UserId">
+          <End Role="tbl_user" Type="Self.tbl_user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Files" Type="Self.Files" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_user">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Files">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_Complain_dbo_tbl_user_UserId">
+          <End Role="tbl_user" Type="Self.tbl_user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_Complain" Type="Self.tbl_Complain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_user">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tbl_Complain">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_Notification_dbo_tbl_user_UserId">
+          <End Role="tbl_user" Type="Self.tbl_user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_Notification" Type="Self.tbl_Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_user">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tbl_Notification">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_planing_dbo_tbl_Client_ClientId">
+          <End Role="tbl_Client" Type="Self.tbl_Client" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_planing" Type="Self.tbl_planing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_planing">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_planing_dbo_tbl_user_UserId">
+          <End Role="tbl_user" Type="Self.tbl_user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_planing" Type="Self.tbl_planing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_user">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tbl_planing">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_SuccessDeplyment_dbo_tbl_user_UserId">
+          <End Role="tbl_user" Type="Self.tbl_user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_SuccessDeplyment" Type="Self.tbl_SuccessDeplyment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_user">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tbl_SuccessDeplyment">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_user_dbo_tbl_Role_RoleId">
+          <End Role="tbl_Role" Type="Self.tbl_Role" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_user" Type="Self.tbl_user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="tbl_user">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TMADBKKModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Files" EntityType="Self.Files" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Client" EntityType="Self.tbl_Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Complain" EntityType="Self.tbl_Complain" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Notification" EntityType="Self.tbl_Notification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_planing" EntityType="Self.tbl_planing" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Resources" EntityType="Self.tbl_Resources" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Role" EntityType="Self.tbl_Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_SuccessDeplyment" EntityType="Self.tbl_SuccessDeplyment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_user" EntityType="Self.tbl_user" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_Files_dbo_tbl_user_UserId" Association="Self.FK_dbo_Files_dbo_tbl_user_UserId">
+            <End Role="tbl_user" EntitySet="tbl_user" />
+            <End Role="Files" EntitySet="Files" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_Complain_dbo_tbl_user_UserId" Association="Self.FK_dbo_tbl_Complain_dbo_tbl_user_UserId">
+            <End Role="tbl_user" EntitySet="tbl_user" />
+            <End Role="tbl_Complain" EntitySet="tbl_Complain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_Notification_dbo_tbl_user_UserId" Association="Self.FK_dbo_tbl_Notification_dbo_tbl_user_UserId">
+            <End Role="tbl_user" EntitySet="tbl_user" />
+            <End Role="tbl_Notification" EntitySet="tbl_Notification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_planing_dbo_tbl_Client_ClientId" Association="Self.FK_dbo_tbl_planing_dbo_tbl_Client_ClientId">
+            <End Role="tbl_Client" EntitySet="tbl_Client" />
+            <End Role="tbl_planing" EntitySet="tbl_planing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_planing_dbo_tbl_user_UserId" Association="Self.FK_dbo_tbl_planing_dbo_tbl_user_UserId">
+            <End Role="tbl_user" EntitySet="tbl_user" />
+            <End Role="tbl_planing" EntitySet="tbl_planing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_SuccessDeplyment_dbo_tbl_user_UserId" Association="Self.FK_dbo_tbl_SuccessDeplyment_dbo_tbl_user_UserId">
+            <End Role="tbl_user" EntitySet="tbl_user" />
+            <End Role="tbl_SuccessDeplyment" EntitySet="tbl_SuccessDeplyment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_user_dbo_tbl_Role_RoleId" Association="Self.FK_dbo_tbl_user_dbo_tbl_Role_RoleId">
+            <End Role="tbl_Role" EntitySet="tbl_Role" />
+            <End Role="tbl_user" EntitySet="tbl_user" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TMADBKKModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="File">
+          <Key>
+            <PropertyRef Name="fileId" />
+          </Key>
+          <Property Name="fileId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sumitionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="file_form" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="updateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="submit_to" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="submit_from" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbl_user" Relationship="Self.FK_dbo_Files_dbo_tbl_user_UserId" FromRole="Files" ToRole="tbl_user" />
+        </EntityType>
+        <EntityType Name="tbl_Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="clientType" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbl_planing" Relationship="Self.FK_dbo_tbl_planing_dbo_tbl_Client_ClientId" FromRole="tbl_Client" ToRole="tbl_planing" />
+        </EntityType>
+        <EntityType Name="tbl_Complain">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="complainType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="complaindata" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbl_user" Relationship="Self.FK_dbo_tbl_Complain_dbo_tbl_user_UserId" FromRole="tbl_Complain" ToRole="tbl_user" />
+        </EntityType>
+        <EntityType Name="tbl_Notification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NotifiType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NotifisubmitTo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NotifisubmitFrom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbl_user" Relationship="Self.FK_dbo_tbl_Notification_dbo_tbl_user_UserId" FromRole="tbl_Notification" ToRole="tbl_user" />
+        </EntityType>
+        <EntityType Name="tbl_planing">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="planning_Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="planning_Payment" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbl_Client" Relationship="Self.FK_dbo_tbl_planing_dbo_tbl_Client_ClientId" FromRole="tbl_planing" ToRole="tbl_Client" />
+          <NavigationProperty Name="tbl_user" Relationship="Self.FK_dbo_tbl_planing_dbo_tbl_user_UserId" FromRole="tbl_planing" ToRole="tbl_user" />
+        </EntityType>
+        <EntityType Name="tbl_Resources">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="quantity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_user" Relationship="Self.FK_dbo_tbl_user_dbo_tbl_Role_RoleId" FromRole="tbl_Role" ToRole="tbl_user" />
+        </EntityType>
+        <EntityType Name="tbl_SuccessDeplyment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="project_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="project_Budget" Type="Int32" Nullable="false" />
+          <Property Name="project_Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbl_user" Relationship="Self.FK_dbo_tbl_SuccessDeplyment_dbo_tbl_user_UserId" FromRole="tbl_SuccessDeplyment" ToRole="tbl_user" />
+        </EntityType>
+        <EntityType Name="tbl_user">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Contact" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="profile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Files" Relationship="Self.FK_dbo_Files_dbo_tbl_user_UserId" FromRole="tbl_user" ToRole="Files" />
+          <NavigationProperty Name="tbl_Complain" Relationship="Self.FK_dbo_tbl_Complain_dbo_tbl_user_UserId" FromRole="tbl_user" ToRole="tbl_Complain" />
+          <NavigationProperty Name="tbl_Notification" Relationship="Self.FK_dbo_tbl_Notification_dbo_tbl_user_UserId" FromRole="tbl_user" ToRole="tbl_Notification" />
+          <NavigationProperty Name="tbl_planing" Relationship="Self.FK_dbo_tbl_planing_dbo_tbl_user_UserId" FromRole="tbl_user" ToRole="tbl_planing" />
+          <NavigationProperty Name="tbl_Role" Relationship="Self.FK_dbo_tbl_user_dbo_tbl_Role_RoleId" FromRole="tbl_user" ToRole="tbl_Role" />
+          <NavigationProperty Name="tbl_SuccessDeplyment" Relationship="Self.FK_dbo_tbl_SuccessDeplyment_dbo_tbl_user_UserId" FromRole="tbl_user" ToRole="tbl_SuccessDeplyment" />
+        </EntityType>
+        <Association Name="FK_dbo_Files_dbo_tbl_user_UserId">
+          <End Role="tbl_user" Type="Self.tbl_user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Files" Type="Self.File" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_user">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Files">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_planing_dbo_tbl_Client_ClientId">
+          <End Role="tbl_Client" Type="Self.tbl_Client" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_planing" Type="Self.tbl_planing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_planing">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_Complain_dbo_tbl_user_UserId">
+          <End Role="tbl_user" Type="Self.tbl_user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_Complain" Type="Self.tbl_Complain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_user">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tbl_Complain">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_Notification_dbo_tbl_user_UserId">
+          <End Role="tbl_user" Type="Self.tbl_user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_Notification" Type="Self.tbl_Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_user">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tbl_Notification">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_planing_dbo_tbl_user_UserId">
+          <End Role="tbl_user" Type="Self.tbl_user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_planing" Type="Self.tbl_planing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_user">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tbl_planing">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_user_dbo_tbl_Role_RoleId">
+          <End Role="tbl_Role" Type="Self.tbl_Role" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_user" Type="Self.tbl_user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="tbl_user">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tbl_SuccessDeplyment_dbo_tbl_user_UserId">
+          <End Role="tbl_user" Type="Self.tbl_user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_SuccessDeplyment" Type="Self.tbl_SuccessDeplyment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_user">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tbl_SuccessDeplyment">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TMADBKKEntities6" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="Files" EntityType="Self.File" />
+          <EntitySet Name="tbl_Client" EntityType="Self.tbl_Client" />
+          <EntitySet Name="tbl_Complain" EntityType="Self.tbl_Complain" />
+          <EntitySet Name="tbl_Notification" EntityType="Self.tbl_Notification" />
+          <EntitySet Name="tbl_planing" EntityType="Self.tbl_planing" />
+          <EntitySet Name="tbl_Resources" EntityType="Self.tbl_Resources" />
+          <EntitySet Name="tbl_Role" EntityType="Self.tbl_Role" />
+          <EntitySet Name="tbl_SuccessDeplyment" EntityType="Self.tbl_SuccessDeplyment" />
+          <EntitySet Name="tbl_user" EntityType="Self.tbl_user" />
+          <AssociationSet Name="FK_dbo_Files_dbo_tbl_user_UserId" Association="Self.FK_dbo_Files_dbo_tbl_user_UserId">
+            <End Role="tbl_user" EntitySet="tbl_user" />
+            <End Role="Files" EntitySet="Files" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_planing_dbo_tbl_Client_ClientId" Association="Self.FK_dbo_tbl_planing_dbo_tbl_Client_ClientId">
+            <End Role="tbl_Client" EntitySet="tbl_Client" />
+            <End Role="tbl_planing" EntitySet="tbl_planing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_Complain_dbo_tbl_user_UserId" Association="Self.FK_dbo_tbl_Complain_dbo_tbl_user_UserId">
+            <End Role="tbl_user" EntitySet="tbl_user" />
+            <End Role="tbl_Complain" EntitySet="tbl_Complain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_Notification_dbo_tbl_user_UserId" Association="Self.FK_dbo_tbl_Notification_dbo_tbl_user_UserId">
+            <End Role="tbl_user" EntitySet="tbl_user" />
+            <End Role="tbl_Notification" EntitySet="tbl_Notification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_planing_dbo_tbl_user_UserId" Association="Self.FK_dbo_tbl_planing_dbo_tbl_user_UserId">
+            <End Role="tbl_user" EntitySet="tbl_user" />
+            <End Role="tbl_planing" EntitySet="tbl_planing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_user_dbo_tbl_Role_RoleId" Association="Self.FK_dbo_tbl_user_dbo_tbl_Role_RoleId">
+            <End Role="tbl_Role" EntitySet="tbl_Role" />
+            <End Role="tbl_user" EntitySet="tbl_user" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tbl_SuccessDeplyment_dbo_tbl_user_UserId" Association="Self.FK_dbo_tbl_SuccessDeplyment_dbo_tbl_user_UserId">
+            <End Role="tbl_user" EntitySet="tbl_user" />
+            <End Role="tbl_SuccessDeplyment" EntitySet="tbl_SuccessDeplyment" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TMADBKKModelStoreContainer" CdmEntityContainer="TMADBKKEntities6">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="TMADBKKModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Files">
+            <EntityTypeMapping TypeName="TMADBKKModel.File">
+              <MappingFragment StoreEntitySet="Files">
+                <ScalarProperty Name="fileId" ColumnName="fileId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="sumitionDate" ColumnName="sumitionDate" />
+                <ScalarProperty Name="file_form" ColumnName="file_form" />
+                <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+                <ScalarProperty Name="submit_to" ColumnName="submit_to" />
+                <ScalarProperty Name="submit_from" ColumnName="submit_from" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Client">
+            <EntityTypeMapping TypeName="TMADBKKModel.tbl_Client">
+              <MappingFragment StoreEntitySet="tbl_Client">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="clientType" ColumnName="clientType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Complain">
+            <EntityTypeMapping TypeName="TMADBKKModel.tbl_Complain">
+              <MappingFragment StoreEntitySet="tbl_Complain">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="complainType" ColumnName="complainType" />
+                <ScalarProperty Name="complaindata" ColumnName="complaindata" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Notification">
+            <EntityTypeMapping TypeName="TMADBKKModel.tbl_Notification">
+              <MappingFragment StoreEntitySet="tbl_Notification">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="NotifiType" ColumnName="NotifiType" />
+                <ScalarProperty Name="NotifisubmitTo" ColumnName="NotifisubmitTo" />
+                <ScalarProperty Name="NotifisubmitFrom" ColumnName="NotifisubmitFrom" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_planing">
+            <EntityTypeMapping TypeName="TMADBKKModel.tbl_planing">
+              <MappingFragment StoreEntitySet="tbl_planing">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="planning_Type" ColumnName="planning_Type" />
+                <ScalarProperty Name="planning_Payment" ColumnName="planning_Payment" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Resources">
+            <EntityTypeMapping TypeName="TMADBKKModel.tbl_Resources">
+              <MappingFragment StoreEntitySet="tbl_Resources">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Role">
+            <EntityTypeMapping TypeName="TMADBKKModel.tbl_Role">
+              <MappingFragment StoreEntitySet="tbl_Role">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_SuccessDeplyment">
+            <EntityTypeMapping TypeName="TMADBKKModel.tbl_SuccessDeplyment">
+              <MappingFragment StoreEntitySet="tbl_SuccessDeplyment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="project_Name" ColumnName="project_Name" />
+                <ScalarProperty Name="project_Budget" ColumnName="project_Budget" />
+                <ScalarProperty Name="project_Status" ColumnName="project_Status" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_user">
+            <EntityTypeMapping TypeName="TMADBKKModel.tbl_user">
+              <MappingFragment StoreEntitySet="tbl_user">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="profile" ColumnName="profile" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,121 @@
+﻿@model WebAppTMA.Models.user
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_DashboradLayout.cshtml";
+}
+
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+<br />
+<br />
+<br />
+<br />
+<br />
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post,new {enctype="multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4 style="text-align:center;margin-top:10px; color:blue;">USER REGISTRAION </h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.RoleId, "RoleId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-8">
+                @Html.DropDownList("RoleId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Name:</label>
+            <div class="col-md-8">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="fa fa-user"></i>
+
+                    </span>
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "user Name" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">EMAIL:</label>
+            <div class="col-md-8">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="fa fa-envelope"></i>
+
+                    </span>
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "email address" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">PASSWORD:</label>
+            <div class="col-md-8">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="fas fa-unlock-alt"></i>
+
+                    </span>
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter password" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">CONTACT:</label>
+            <div class="col-md-8">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="fas fa-phone-volume"></i>
+
+                    </span>
+                    @Html.EditorFor(model => model.Contact, new { htmlAttributes = new { @class = "form-control", @placeholder = "phone number" } })
+                    @Html.ValidationMessageFor(model => model.Contact, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">IMAGE:</label>
+            <div class="col-md-8">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="fa fa-envelope"></i>
+
+                    </span>
+                    @*@Html.EditorFor(model => model.profile, new { htmlAttributes = new { @class = "form-control", @placeholder = "profile" } })*@
+                    <input type="file" name="file" />
+                    @Html.ValidationMessageFor(model => model.profile, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-8">
+                <input type="submit" value="Create" class="btn btn-success btn-block" />
+            </div>
+        </div>
+    </div>
+
+}
+
+
+

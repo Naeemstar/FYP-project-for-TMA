@@ -1,0 +1,87 @@
+﻿@model WebAppTMA.Models.Clientes
+
+@{
+    ViewBag.Title = "Create";
+    //Layout = "~/Views/Shared/_DashboradLayout.cshtml";
+}
+<head>
+    <style>
+        .stee {
+            margin-left: 158px;
+            margin-top: 90px;
+        }
+    </style>
+</head>
+
+<div class="container">
+    <div class="stee">
+       
+
+        <form id="creatproduct">
+
+
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4 style="text-align:center;color:blue;"> CREATE CLIENT</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group">
+                    @*@Html.LabelFor(model => model.clientType, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <label class="control-label col-md-2">client Name</label>
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.clientType, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.clientType, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.address, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @*<label class="control-label col-md-2">client Name</label>*@
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.phone, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @*<label class="control-label col-md-2">client Name</label>*@
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-2">
+                        <input type="button" value="Create" class="btn btn-primary btn-lg" id="crebtn" />
+                    </div>
+                </div>
+            </div>
+
+
+        </form>
+
+      
+    </div>
+</div>
+
+
+<script>
+    $("#crebtn").click(function () {
+
+        $.ajax({
+            type: 'POST',
+            url: '/Clientes/Create/',
+            data: $("#creatproduct").serialize()
+
+        })
+            .done(function (response) {
+                $("#tablcontainer").html(response);
+                $("#actioncontainer").html("");
+            })
+            .fail(function (XMLHttpRequest, TextStatus, errorThrown) {
+                alert("fail");
+            })
+    });
+</script>

@@ -1,0 +1,320 @@
+﻿/* Carousel */
+/*.home .carousel {
+    position: relative;
+    height: 700px;
+    display: inline-block;
+}
+
+    .home .carousel .item img {
+        width: 100%;
+        height: 700px;
+    }
+/*.carousel-inner > .item > a > img,
+.carousel-inner > .item > img {
+    height: 700px;
+}*/
+.carousel .overlay {
+    background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0;
+}
+
+.carousel-caption {
+    left: 7%;
+    right: 7%;
+    top: 70px;
+}
+
+    .carousel-caption h1 {
+        color: #fff;
+        margin-bottom: 20px;
+    }
+
+        .carousel-caption h1.second_heading {
+            color: #ffcb0f;
+            margin-bottom: 35px;
+        }
+
+    .carousel-caption > h3 {
+        color: #fff;
+        font-family: "futura_ltbook",sans-serif;
+        font-size: 40px;
+        font-weight: normal;
+        margin-bottom: 30px;
+        text-transform: inherit;
+    }
+
+    .carousel-caption > p {
+        font-size: 23px;
+        line-height: 28px;
+    }
+
+.carousel-control {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    margin-top: -25px;
+    top: 50%;
+}*/
+/* About Section */
+#about {
+    padding: 100px 0;
+}
+
+    #about h3 {
+        font-size: 22px;
+        margin: 0 0 20px 0;
+    }
+
+    #about h2 {
+        position: relative;
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+    }
+
+        #about h2::after {
+            position: absolute;
+            content: "";
+            background: linear-gradient(to right, #5ca9fb 0%, #6372ff 100%);
+            height: 4px;
+            width: 60px;
+            bottom: 0;
+            left: 0;
+        }
+
+    #about .about-text li {
+        margin-bottom: 6px;
+        margin-left: 6px;
+        list-style: none;
+        padding: 0;
+    }
+
+        #about .about-text li:before {
+            content: '\f00c';
+            font-family: 'FontAwesome';
+            color: #5ca9fb;
+            font-size: 11px;
+            font-weight: 300;
+            padding-right: 8px;
+        }
+
+    #about img {
+        width: 520px;
+        margin-top: 10px;
+        background: #fff;
+        border-right: 0;
+        box-shadow: 0 0 50px rgba(0,0,0,0.06);
+    }
+
+    #about p {
+        line-height: 24px;
+        margin: 30px 0;
+    }
+/*-- our services --*/
+
+.content-our {
+    background: #00bce4;
+    padding-top: 2em;
+    padding-bottom: 8em;
+}
+
+    .content-our h3 {
+        color: #fff;
+        text-align: center;
+        font-family: 'Quicksand', sans-serif;
+        font-weight: 900;
+        padding: 2em 0;
+        font-size: 2em;
+    }
+    .content-our h3,h4{
+        color:#fff;
+    }
+/* gallery */
+.gal-img img {
+    -moz-transition: 0.5s all;
+    transition: 0.5s all;
+    padding: 10px;
+}
+
+.gal-img:hover.gal-img img {
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, .3);
+}
+
+/* popup */
+.pop-overlay {
+    position: fixed;
+    top: 0px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 0ms;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 999;
+}
+
+    .pop-overlay:target {
+        visibility: visible;
+        opacity: 1;
+    }
+
+.popup {
+    background: #fff;
+    -webkit-border-radius: 4px;
+    -o-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    max-width: 550px;
+    position: relative;
+    margin: 8em auto;
+    padding: 3em 2em 2em;
+}
+
+    .popup .close {
+        position: absolute;
+        top: 5px;
+        right: 15px;
+        transition: all 200ms;
+        font-size: 30px;
+        font-weight: bold;
+        text-decoration: none;
+        color: #000;
+    }
+
+        .popup .close:hover {
+            color: #f0546a;
+        }
+
+/* //popup */
+/* //gallery */
+
+/*-- contact --*/
+form.register-wthree .form-control {
+    background: #eee;
+    font-size: 1em;
+}
+
+textarea {
+    height: 180px;
+    resize: none;
+}
+
+form.register-wthree .form-control {
+    background: #f9f8fa;
+    padding: 15px 15px;
+    border: none;
+    border-left: 5px solid #eee;
+    -webkit-box-shadow: 7px 7px 10px 0 rgba(76, 110, 245, .1);
+    -moz-box-shadow: 7px 7px 10px 0 rgba(76, 110, 245, .1);
+    box-shadow: 7px 7px 10px 0 rgba(76, 110, 245, .1);
+}
+
+button.btn-aasana-w3 {
+    background: #39cc9c;
+    color: #ffffff;
+    padding: 11px;
+    letter-spacing: 1px;
+}
+
+.w3l-map iframe {
+    width: 100%;
+    min-height: 400px;
+    border: none;
+    display: block;
+}
+
+.w3-contact-left p a {
+    color: #777;
+}
+
+.w3-contact-left p span.fa {
+    color: #39cc9c;
+}
+/*-- //contact --*/
+
+/*--/team--*/
+
+.team-gd {
+    padding: 2em 2em;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.team-info h3 {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #262631;
+    margin-bottom: 0.8em;
+    text-transform: uppercase;
+}
+
+.sub-tittle-team {
+    font-size: 0.6em;
+    color: #1963eb;
+    font-weight: 700;
+    letter-spacing: 2px;
+    display: block;
+}
+
+/*ul.team-icons li {
+    list-style: none;
+    display: inline-block;
+    margin-right: 1em;
+}
+
+    ul.team-icons li a span {
+        color: #333;
+        text-decoration: none;
+        font-size: 18px;
+    }
+
+    ul.team-icons li a {
+        color: #333;
+        font-size: 18px;
+    }*/
+
+.rsvp img {
+    background: #eaebec;
+    padding: 0.7em;
+}
+
+ul.team-icons.new-inf li a,
+ul.team-icons.new-inf li span {
+    font-size: 15px;
+    color: #666;
+}
+
+ul.team-icons.new-inf li {
+    color: #666;
+    font-size: 15px;
+}
+
+.team-gd {
+    padding: 3em 2em;
+    background: #f8f9fa;
+    transition: 2s all;
+    -webkit-transition: 2s all;
+    -moz-transition: 2s all;
+    -ms-transition: 2s all;
+    -o-transition: 2s all;
+    box-shadow: 7px 7px 10px 0 rgba(76, 110, 245, .1);
+    border: transparent;
+}
+
+    .team-gd.second {
+        border-left: 1px solid #e4e6e6;
+        border-right: 1px solid #e4e6e6;
+    }
+
+    .team-gd img {
+        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, .3);
+    }
+
+/*--//team--*/
+

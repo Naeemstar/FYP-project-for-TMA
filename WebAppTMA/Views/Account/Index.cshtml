@@ -1,0 +1,172 @@
+﻿@model IEnumerable<WebAppTMA.Models.user>
+
+
+@{
+    /**/
+
+    ViewBag.Title = "Index";
+    //Layout = "~/Views/Shared/_DashboradLayout.cshtml";
+}
+<br />
+<br />
+
+<head>
+    <style>
+        th {
+            height: 50px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+        }
+
+        table {
+            width: 50%;
+            margin-left: 200px;
+            margin-top: 64px;
+            border: 1px solid;
+        }
+
+            table tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            table tr:hover {
+                background-color: #ddd;
+            }
+        #searcTXT{
+            margin-left:10px;
+        }
+    </style>
+</head>
+<br />
+<br />
+<br />
+
+
+<div class="container" id="tblcontainer">
+
+    <div class="row">
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-10">
+
+
+
+            <table class="table table-bordered table-responsive table-hover table-striped" id="mytable">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Password)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Contact)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.profile)
+                        </th>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.Role.RoleName)*@
+                            <label>RoleName</label>
+                        </th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Password)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Contact)
+                            </td>
+
+                            <td>
+
+                                <img src="@Url.Content(item.profile)" width="50" height="50" />
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Role.RoleName)
+                            </td>
+                            <td>
+                                @*@Html.ActionLink("Edit", "Edit", new { id = item.UserId })*@
+                                <button class="edittbtn" data-id="@item.UserId" style="width:100px;height:30px;">Edite</button>
+                                @*@Html.ActionLink("Details", "Details", new { id = item.UserId }) |*@
+                                <button onclick="deletbtnn()" style="width:100px;height:30px;">@Html.ActionLink("Delete", "Delete", new { id = item.UserId })</button>
+
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+       
+
+
+<script>
+    function deletbtnn()
+    {
+        alert("ARE You want to Delete This item!");
+           
+    }
+
+    
+    //$(".deletbtn").click(function () {
+
+    //    if (confirm("Are you want to delete this things!") == true);
+    //    {
+
+    //        //$.ajax({
+    //        //    type: 'POST',
+    //        //    url: '/Clientes/Delete/',
+    //        //    data: {
+    //        //        ID: $(this).attr('product')
+    //        //    }
+
+    //        //})
+    //        //    .done(function (response) {
+    //        //        $("#tablcontainer").html(response);
+    //        //    })
+    //        //    .fail(function (XMLHttpRequest, TextStatus, errorThrown) {
+    //        //        alert("fail");
+    //        //    });
+ 
+    //    }
+
+
+    //});
+    $(".edittbtn").click(function () {
+
+        $.ajax({
+            url: '/Account/Edit/',
+            data: {
+                ID: $(this).attr('data-id')
+            }
+
+        })
+            .done(function (response) {
+                $("#actioncontainer").html(response);
+            })
+            .fail(function (XMLHttpRequest, TextStatus, errorThrown) {
+                alert("fail");
+            })
+    });
+</script>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ba51a8a8972d4b85b1826b75d8181f8f" Name="Diagram1">
+        <EntityTypeShape EntityType="TMADBKKModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TMADBKKModel.File" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TMADBKKModel.tbl_Client" Width="1.5" PointX="6" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="TMADBKKModel.tbl_Complain" Width="1.5" PointX="5.25" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TMADBKKModel.tbl_Notification" Width="1.5" PointX="5.25" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TMADBKKModel.tbl_planing" Width="1.5" PointX="8.25" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TMADBKKModel.tbl_Resources" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TMADBKKModel.tbl_Role" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="TMADBKKModel.tbl_SuccessDeplyment" Width="1.5" PointX="5.25" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TMADBKKModel.tbl_user" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <AssociationConnector Association="TMADBKKModel.FK_dbo_Files_dbo_tbl_user_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="TMADBKKModel.FK_dbo_tbl_planing_dbo_tbl_Client_ClientId" ManuallyRouted="false" />
+        <AssociationConnector Association="TMADBKKModel.FK_dbo_tbl_Complain_dbo_tbl_user_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="TMADBKKModel.FK_dbo_tbl_Notification_dbo_tbl_user_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="TMADBKKModel.FK_dbo_tbl_planing_dbo_tbl_user_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="TMADBKKModel.FK_dbo_tbl_user_dbo_tbl_Role_RoleId" ManuallyRouted="false" />
+        <AssociationConnector Association="TMADBKKModel.FK_dbo_tbl_SuccessDeplyment_dbo_tbl_user_UserId" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

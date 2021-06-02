@@ -1,0 +1,54 @@
+﻿@model WebAppTMA.Models.Rolee
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_DashboradLayout.cshtml";
+}
+
+<head>
+    <style>
+        #yu
+        {
+            margin-left:120px;
+        }
+
+    </style>
+</head>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal" id="yu">
+        <h2 style="text-align:center ;color:blue;">Add Role</h2>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.RoleName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    @Html.EditorFor(model => model.RoleName, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                @Html.ValidationMessageFor(model => model.RoleName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-danger" />
+            </div>
+        </div>
+    </div>
+}
+
+<div style="margin-left:600px;">
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "msg";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align:center;">thank you for complaining with us :</h2>
+<h5  style="text-align:center;">now we will take the actions</h5>
+
+@if (ViewBag.message != null)
+{
+   <script>
+       alert("@ViewBag.message");
+       </script> 
+}

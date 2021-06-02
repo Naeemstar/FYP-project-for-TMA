@@ -1,0 +1,205 @@
+﻿
+@{
+    /**/
+
+    ViewBag.Title = "Services";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <style>
+        /*-- //w3l-services-block --*/
+.w3l-services-block {
+  background: #fff;
+}
+
+
+
+        .service_grid_btm_left1 {
+            transition: all 300ms ease-in-out;
+            z-index: 1;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            border-radius: 8px;
+            margin-bottom:38px;
+        }
+        .service_grid_btm_left1 img {
+            width: 500px;
+           
+            
+        }
+
+        .service_grid_btm_left1:before {
+            bottom: 0;
+            right: 0;
+            border-bottom: 2px solid #400082;
+            border-right: 2px solid #400082;
+        }
+
+            .service_grid_btm_left1:after,
+            .service_grid_btm_left1:before {
+                content: '';
+                width: 0;
+                height: 0;
+                visibility: hidden;
+                position: absolute;
+                transition: all 800ms ease-in-out;
+                border-radius: 8px;
+            }
+
+.service_grid_btm_left1:after {
+  top: 0;
+  left: 0;
+  border-top: 2px solid #400082;
+  border-left: 2px solid #400082;
+}
+
+.service_grid_btm_left1:hover:after,
+.service_grid_btm_left1:hover:before {
+  width: 100%;
+  height: 100%;
+  visibility: visible;
+}
+
+        .service_grid_btm_left2 h5 {
+            margin: 0em 0 .5em;
+            font-size: 24px;
+            color: #0D001A;
+            font-weight: 700;
+            line-height: 30px;
+            text-transform: capitalize;
+            transition: .5s all;
+            -webkit-transition: .5s all;
+            -o-transition: .5s all;
+            -moz-transition: .5s all;
+            -ms-transition: .5s all;
+        }
+
+.service_grid_btm_left2 p {
+  color: #555;
+  font-size: 15px;
+  line-height: 26px;
+  margin: 0;
+}
+
+.service_grid_btm_left2 {
+  padding: 2em 1em;
+  border: none;
+  background: #fff;
+  text-align: center;
+}
+
+.service_grid_btm_left1:hover {
+  cursor: default;
+}
+
+.service_grid_btm_left1:hover .service_grid_btm_left2 i {
+  color: #400082;
+  border-color: #252525;
+  transition: .5s all;
+  -webkit-transition: .5s all;
+  -o-transition: .5s all;
+  -moz-transition: .5s all;
+  -ms-transition: .5s all;
+}
+
+.service_grid_btm_left2 span.fa {
+  display: inline-block;
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+
+
+
+
+    </style>
+</head>
+<link href="~/Content/css/contact.css" rel="stylesheet" />
+<!-- services block 2 -->
+<div class="w3l-services-block py-5" id="classes">
+    <div class="container py-lg-5 py-md-5">
+        <div class="title-content text-left mb-lg-5 mt-4">
+            <br />
+            <br />
+            <br />
+            <h2 class="hny-title">Our Services</h2>
+            <br />
+            <p>we fullfill the following services for you!</p>
+        </div>
+        <br />
+        <div class="services-block_grids_bottom">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 service_grid_btm_left mt-lg-5 mt-4">
+                    <div class="service_grid_btm_left1">
+                        
+                      
+                        <a href="#"><img src="~/images/tn.jpg" alt=" " class="img-fluid" /></a>
+                        <div class="service_grid_btm_left2">
+                            <h5>cleaning</h5>
+                            <p>cleaning of bazar is the main serveric performed by us.</p>
+
+                        </div>
+                       
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 service_grid_btm_left mt-lg-5 mt-4">
+                    <div class="service_grid_btm_left1">
+                        <a href="#"><img src="~/images/tm2.jpg" alt=" " class="img-fluid" /></a>
+                        <div class="service_grid_btm_left2">
+
+                            <h5>sanitizer spray</h5>
+                            <p>due to covid19 the sanitizer spray will spraye in the schools and colleges.</p>
+
+                        </div>
+                    </div>
+                
+                </div>
+                <div class="col-lg-4 col-md-6 service_grid_btm_left mt-lg-5 mt-4">
+                    <div class="service_grid_btm_left1">
+                        <a href="#"><img src="~/images/tm3.jpg" alt=" " class="img-fluid" /></a>
+                        <div class="service_grid_btm_left2">
+                            <h5>REMOVE BANNERS</h5>
+                            <p>Remove Banner which are hanging with out the permission of TMA which are illegal.</p>
+                           
+                        </div>
+                       
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 service_grid_btm_left mt-lg-5 mt-4">
+                    <div class="service_grid_btm_left1">
+                        <a href="#"><img src="~/images/tm4.jpg" alt=" " class="img-fluid" /></a>
+                        <div class="service_grid_btm_left2">
+                            <h5>Remove unwanted things</h5>
+                            <p>Remove those things from the bazar which may cause disease .</p>
+
+                        </div>
+                    </div>
+                  
+                </div>
+                <div class="col-lg-4 col-md-6 service_grid_btm_left mt-lg-5 mt-4">
+                    <div class="service_grid_btm_left1">
+                        <a href="#"><img src="~/images/tm5.jpg" alt=" " class="img-fluid" /></a>
+                        <div class="service_grid_btm_left2">
+                            <h5>ACCROACHMENT</h5>
+                            <p>by the instruction of the officer tha temporary accroachement will by performed by our team to expand the bazar.</p>
+
+                        </div>
+                    </div>
+                 
+                </div>
+                <div class="col-lg-4 col-md-6 service_grid_btm_left mt-lg-5 mt-4">
+                    <div class="service_grid_btm_left1">
+                        <a href="#"><img src="~/images/tm6.jpg" alt=" " class="img-fluid" /></a>
+                        <div class="service_grid_btm_left2">
+                            <h5>INSTRUCTION TO USE biodegradable plastic</h5>
+                            <p>our team examin the bazar and instruct the people strictly to user biodegradable plastics.</p>
+                            
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- // services block2 -->

@@ -1,0 +1,59 @@
+﻿@model WebAppTMA.Models.File
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_DashboradLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>File</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sumitionDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sumitionDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FilePath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FilePath)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.submit_to)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.submit_to)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.submit_from)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.submit_from)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

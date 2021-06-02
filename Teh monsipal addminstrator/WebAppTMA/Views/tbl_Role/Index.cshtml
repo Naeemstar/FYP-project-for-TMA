@@ -1,0 +1,49 @@
+﻿@model IEnumerable<WebAppTMA.Models.Rolee>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_DashboradLayout.cshtml";
+}
+<head>
+    <style>
+        table
+        {
+            margin-left:230px;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+            
+    </style>
+</head>
+
+<br />
+<br />
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RoleName)
+        </th>
+        <th><label>Updation</label></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoleName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RoleId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RoleId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RoleId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,81 @@
+﻿@model IEnumerable<WebAppTMA.Models.Complain>
+
+@{
+    ViewBag.Title = "Index";
+    //Layout = "~/Views/Shared/_DashboradLayout.cshtml";
+}
+
+<head>
+    <style>
+        .con {
+            margin-top: 150px;
+            margin-left: 250px;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<div class="container">
+    <div class="con">
+
+        <h2 style="text-align:center;color:blue;">complaints List</h2>
+        <br />
+        <table class="table table-bordered table-striped">
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.complainType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Message)
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.complaindata)*@
+                    DATE
+                </th>
+                <th>ACTION</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.complainType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Message)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.complaindata)
+
+                </td>
+                <td>@Html.ActionLink("Delete", "Delete", new { id = item.Id })</td>
+               
+            </tr>
+            }
+
+        </table>
+        
+    </div>
+</div>
+
+@*<script>
+    $("#nwbtn").click(function () {
+
+        $.ajax({
+            url: '/Complain/Create/',
+
+
+        })
+            .done(function (response) {
+                $("#actioncontainer").html(response);
+            })
+            .fail(function (XMLHttpRequest, TextStatus, errorThrown) {
+                alert("fail");
+            })
+    });
+</script>*@

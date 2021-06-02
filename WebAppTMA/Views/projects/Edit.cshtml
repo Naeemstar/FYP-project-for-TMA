@@ -1,0 +1,92 @@
+﻿@model WebAppTMA.Models.SuccessDeplyment
+
+@{
+    ViewBag.Title = "Edit";
+    //Layout = "~/Views/Shared/_DashboradLayout.cshtml";
+}
+
+<head>
+    <style>
+        .stee {
+            margin-left: 158px;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+
+<div class="container">
+    <div class="stee">
+
+        @*@using (Html.BeginForm("Edit", " projects", FormMethod.Post, new { id = "editform" }))
+        {*@
+        <form id="editform">
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4 style="text-align:center;color:blue;"> UPDATE project</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.project_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.project_Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.project_Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.project_Budget, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.project_Budget, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.project_Budget, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.project_Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.project_Status, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.project_Status, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UserId, "UserId", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("UserId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-2">
+                        <button id="savbtn" class="btn btn-primary btn-lg">update</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+       </div>
+
+        </div>
+
+<script>
+    $("#savbtn").click(function () {
+
+        $.ajax({
+            type: 'POST',
+            url: '/projects/Edit/',
+            data: $("#editform").serialize()
+
+        })
+            .done(function (response) {
+                $("#tablcontainer").html(response);
+                $("#actioncontainer").html("");
+            })
+            .fail(function (XMLHttpRequest, TextStatus, errorThrown) {
+                alert("fail");
+            })
+    });
+</script>

@@ -1,0 +1,128 @@
+﻿@model IEnumerable<WebAppTMA.Models.Rolee>
+
+@{
+    ViewBag.Title = "Index";
+    //Layout = "~/Views/Shared/_DashboradLayout.cshtml";
+}
+<head>
+    <style>
+        table
+        {
+            margin-left:230px;
+            
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+            
+        }
+        .con {
+            margin-top: 150px;
+           
+        }
+        
+    </style>
+</head>
+
+
+
+
+
+<div class="container">
+    <div class="con">
+        <h2 style="text-align:center;color:blue;">ROLES List</h2>
+        <br />
+        <div class="col-md-10">
+            <table class="table table-striped table-bordered">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.RoleName)
+                    </th>
+                    <th><label>Updation</label></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RoleName)
+                        </td>
+                        <td>
+                            <button class="editbtn" data-id="@item.RoleId" style="width:150px;height:40px;"><i class="fas fa-edit"></i></button> |
+                            @*@Html.ActionLink("Details", "Details", new { id = item.RoleId }) |*@
+                            @*@Html.ActionLink("Delete", "Delete", new { id = item.RoleId })*@
+                            <button class="deletbtn" data-id="@item.RoleId" style="width:150px;height:40px;"><i class="fas fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+            <div style="margin-left:230px;">
+                <button class="btn btn-primary" id="Adbtn">ADD ROLE</button>
+
+
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+    <script>
+        $("#Adbtn").click(function () {
+
+            $.ajax({
+                url: '/tbl_Role/Create/',
+
+
+            })
+                .done(function (response) {
+                    $("#actioncontainer").html(response);
+                })
+                .fail(function (XMLHttpRequest, TextStatus, errorThrown) {
+                    alert("fail");
+                })
+        });
+        $(".editbtn").click(function () {
+
+            $.ajax({
+                url: '/tbl_Role/Edit/',
+                data: {
+                    ID: $(this).attr('data-id')
+                }
+
+            })
+                .done(function (response) {
+                    $("#actioncontainer").html(response);
+                })
+                .fail(function (XMLHttpRequest, TextStatus, errorThrown) {
+                    alert("fail");
+                })
+        });
+        $(".deletbtn").click(function () {
+
+            if (confirm("Are you want to delete this things!") == true);
+            {
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/tbl_Role/Delete/',
+                    data: {
+                        ID: $(this).attr('data-id')
+                    }
+
+                })
+                    .done(function (response) {
+                        $("#tablcontainer").html(response);
+                    })
+                    .fail(function (XMLHttpRequest, TextStatus, errorThrown) {
+                        alert("fail");
+                    })
+
+
+            }
+
+
+
+
+        });
+    </script>

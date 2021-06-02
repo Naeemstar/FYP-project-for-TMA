@@ -1,0 +1,92 @@
+﻿@model WebAppTMA.Models.Notifaction
+
+@{
+    ViewBag.Title = "Create";
+   // Layout = "~/Views/Shared/_DashboradLayout.cshtml";
+}
+
+<head>
+    <style>
+        .stee {
+            margin-left: 158px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+
+
+<div class="container">
+    <div class="stee">
+
+        <form id="creatproduct">
+            
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4 style="text-align:center;color:blue;"> CREATE Notification</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+
+                    <label class="control-label col-md-2">submitFrom</label>
+                    <div class="col-md-10">
+                        @Html.DropDownList("UserId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NotifiType, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NotifiType, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NotifiType, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NotifisubmitTo, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NotifisubmitTo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NotifisubmitTo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @*<div class="form-group">
+                    @Html.LabelFor(model => model.NotifisubmitFrom, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NotifisubmitFrom, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NotifisubmitFrom, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-2">
+                        <input type="button" value="Create" class="btn btn-primary btn-lg" id="crebtn" />
+                    </div>
+                </div>
+            </div>
+            </form>
+    </div>
+</div>
+<script>
+    $("#crebtn").click(function () {
+
+        $.ajax({
+            type: 'POST',
+            url: '/Notifiction/Create/',
+            data: $("#creatproduct").serialize()
+
+        })
+            .done(function (response) {
+                $("#tablcontainer").html(response);
+                $("#actioncontainer").html("");
+            })
+            .fail(function (XMLHttpRequest, TextStatus, errorThrown) {
+                alert("fail");
+            })
+    });
+</script>

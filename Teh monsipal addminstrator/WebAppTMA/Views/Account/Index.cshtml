@@ -1,0 +1,95 @@
+﻿@model IEnumerable<WebAppTMA.Models.user>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_DashboradLayout.cshtml";
+}
+<br />
+<br />
+
+<head>
+    <style>
+        th{
+            height: 50px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            margin-left: 10px;
+            margin-top:64px;
+            border: 1px solid;
+        }
+
+            table tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            table tr:hover {
+                background-color: #ddd;
+            }
+    </style>
+</head>
+
+
+
+
+<table class="table table-bordered table-responsive">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contact)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.profile)
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Role.RoleName)*@
+            <label>RoleName</label>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contact)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.profile)
+                <img src="@Url.Content(item.profile)" width="50" height="50" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Role.RoleName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.UserId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
+            </td>
+        </tr>
+    }
+
+</table>
+

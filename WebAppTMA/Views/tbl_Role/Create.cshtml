@@ -1,0 +1,74 @@
+﻿@model WebAppTMA.Models.Rolee
+
+@{
+    ViewBag.Title = "Create";
+   // Layout = "~/Views/Shared/_DashboradLayout.cshtml";
+}
+
+<head>
+    <style>
+        #yu
+        {
+            margin-left:120px;
+        }
+        .con{
+            margin-top:60px;
+        }
+    </style>
+</head>
+
+<div class="container">
+    <div class="con">
+        <form id="crearform">
+
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal" id="yu">
+                <h2 style="text-align:center ;color:blue;">Add Role</h2>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.RoleName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                            @Html.EditorFor(model => model.RoleName, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.RoleName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-3 col-md-10">
+                    <input type="button" value="Create" class="btn btn-primary" id="creatbtn" />
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+        </div>
+       
+<br />
+
+<script>
+    $("#creatbtn").click(function () {
+
+        $.ajax({
+            type: 'POST',
+            url: '/tbl_Role/Create/',
+            data: $("#crearform").serialize()
+
+        })
+            .done(function (response) {
+                $("#tablcontainer").html(response);
+                $("#actioncontainer").html("");
+            })
+            .fail(function (XMLHttpRequest, TextStatus, errorThrown) {
+                alert("fail");
+            })
+    });
+</script>      
+

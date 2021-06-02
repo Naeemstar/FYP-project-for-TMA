@@ -1,0 +1,232 @@
+﻿
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <title>@ViewBag.Title</title>
+    <!-- for-mobile-apps -->
+    
+    <script type="application/x-javascript">
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!-- //for-mobile-apps -->
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <!-- services -->
+    <!-- pop-up -->
+    <link href="~/Content/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- //pop-up -->
+    <link href="~/Content/css/easy-responsive-tabs.css" rel='stylesheet' type='text/css' />
+    <!-- //services -->
+    <link href="~/Content/css/JiSlider.css" rel="stylesheet">
+    <link href="~/fontawesome-free/css/all.css" rel="stylesheet" />
+    <link href="~/fontawesome-free/css/fontawesome.css" rel="stylesheet" />
+    @*<link href="~/assets/css/font-awesome.css" rel="stylesheet" />*@
+    <link href="~/Content/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Content/css/contact.css" rel="stylesheet" />
+    <!-- js -->
+    <script src="~/Scripts/js/jquery-2.2.3.min.js"></script>
+    <!--/js-->
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic'
+          rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic'
+          rel='stylesheet' type='text/css'>
+    <!-- nav smooth scroll -->
+    <script>
+        $(document).ready(function () {
+            $(".dropdown").hover(
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+                    $(this).toggleClass('open');
+                },
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+                    $(this).toggleClass('open');
+                }
+            );
+        });
+    </script>
+    <!-- //nav smooth scroll -->
+</head>
+<body>
+    <!-- header -->
+    <div class="header">
+        <div class="container-fluid">
+            <div class="header-grid">
+                <div class="header-grid-left">
+                    <ul>
+                        <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="tmokhwazakhaila@gmail.com">tmokhwazakhaila@gmail.com</a></li>
+                        <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>0946-744424</li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i>@User.Identity.Name</li>
+                            <li><i class="glyphicon glyphicon-book" aria-hidden="true"></i>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                        }
+                        else
+                        {
+                            <li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="#" class="login" data-toggle="modal" data-target="#myModal4">Login</a></li>
+                            <li><i class="glyphicon glyphicon-book" aria-hidden="true"></i><a href="#" class="login reg" data-toggle="modal" data-target="#myModal5">Register</a></li>
+                        }
+
+                    </ul>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="logo-nav">
+                <div class="logo-nav-left">
+                    <h1><a href="index.html">TMA<span>khwazakhela </span></a></h1>
+                </div>
+                <div class="logo-nav-left1">
+                    <nav class="navbar navbar-default">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+                                menu
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+
+                        </div>
+                        <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+                            <ul class="nav navbar-nav">
+
+                                <li><a href="@Url.Action("index","Home")"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+
+                                <li>@Html.ActionLink("About", "About", "Home")</li>
+                                <li>@Html.ActionLink("Services", "Services", "Home")</li>
+                                <li>@Html.ActionLink("TEAM Member", "Gallary", "Home")</li>
+                                <li>@Html.ActionLink("Complain", "Complain", "Home")</li>
+                                <li>@Html.ActionLink("Gallary", "team", "Home")</li>
+                                <li>@Html.ActionLink("Contact us", "contact", "Home")</li>
+                                <li>@Html.ActionLink("admin", "index", "Dashborad")</li>
+                                @*@if (User.Identity.IsAuthenticated)
+                                {
+
+                                }*@
+
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <!-- //header -->
+    @*<div class="general_social_icons">
+        <nav class="wthree-social">
+            <ul>
+                <li class="w3_facebook"><a href="facebook.com/ TMA-Khwazakhela-242610116082349.."> <i class="fab fa-facebook"></i>Facebook</a></li>
+                <li class="w3_twitter"><a href="#"><i class="fab fa-twitter"></i>Twitter </a></li>
+                <li class="w3_dribbble"><a href="#"> <i class="fab fa-dribbble"></i>Dribbble</a></li>
+                <li class="w3_g_plus"><a href="#"><i class="fab fa-google-plus"></i>Google+ </a></li>
+            </ul>
+        </nav>
+    </div>
+    </div>*@
+    
+    @RenderBody();
+    <!-- footer -->
+    <div class="footer">
+
+        <div class="agile_footer_grids">
+            <div class="col-md-4 col-sm-4 col-xs-4 w3_footer_grid agile_footer_grids_w3_footer">
+                <div class="w3_footer_grid_bottom contact">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><p><span class="fa fa-map-marker mr-2"></span>G.T road near Bus stand khwaza khela swat.</p></li>
+                        <li><span class="fa fa-envelope" aria-hidden="true"></span><a href="mailto:info@example.com">info@example.com</a></li>
+                        <li><span class="fa fa-phone" aria-hidden="true"></span><p>+1234 567 567</p></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4  col-xs-4 w3_footer_grid agile_footer_grids_w3_footer">
+                <div class="w3_footer_grid_bottom">
+                    <h3>Legal</h3>
+                    <ul class="w3_footer_grid_list">
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4  col-xs-4 w3_footer_grid agile_footer_grids_w3_footer">
+                <div class="w3_footer_grid_bottom contact">
+                    <h3>our branches</h3>
+                    @*<img src="images/map.jpg" class="img-responsive" alt="" />*@
+                    <ul>
+                        <li><p>we have only one office in khawaza khela.</p></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        <div class="wthree_footer_copy">
+            <p>
+                Copyright &copy @DateTime.Now.Year All rights reserved | Developed by Naeemullah & SohailAhmad
+            </p>
+            
+        </div>
+    </div>
+    <!-- //footer -->
+    <script type="text/javascript">
+        window.onload = function () {
+            document.getElementById("password1").onchange = validatePassword;
+            document.getElementById("password2").onchange = validatePassword;
+        }
+        function validatePassword() {
+            var pass2 = document.getElementById("password2").value;
+            var pass1 = document.getElementById("password1").value;
+            if (pass1 != pass2)
+                document.getElementById("password2").setCustomValidity("Passwords Don't Match");
+            else
+                document.getElementById("password2").setCustomValidity('');
+            //empty string means no validation error
+        }
+
+    </script>
+    <script src="~/Scripts/js/SmoothScroll.min.js"></script>
+    <!-- //js -->
+    <script src="~/Scripts/js/JiSlider.js"></script>
+    <script>
+        $(window).load(function () {
+            $('#JiSlider').JiSlider({
+                color: '#fff',
+                start: 1,
+                reverse: false
+            }).addClass('ff')
+        })
+    </script>
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-36251023-1']);
+        _gaq.push(['_setDomainName', 'jqueryscript.net']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <script src="/Content//Scripts/js/SmoothScroll.min.js"></script>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="~/Scripts/js/bootstrap.js"></script>
+
+
+</body>
+
+</html>
